@@ -1,5 +1,7 @@
 "use client";
+
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 type Item = {
@@ -20,14 +22,16 @@ export default function ItemsPage() {
   return (
     <div className="p-6 grid grid-cols-3 gap-4">
       {items.map((item) => (
-        <Card key={item.id} className="shadow-md hover:shadow-lg transition">
-          <CardHeader>
-            <CardTitle>{item.name}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>ID: {item.id}</p>
-          </CardContent>
-        </Card>
+        <Link href={`/items/${item.id}`} key={item.id}>
+          <Card className="hover:shadow-lg cursor-pointer transition">
+            <CardHeader>
+              <CardTitle>{item.name}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>ID: {item.id}</p>
+            </CardContent>
+          </Card>
+        </Link>
       ))}
     </div>
   );
